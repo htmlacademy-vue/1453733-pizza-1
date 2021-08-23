@@ -16,6 +16,7 @@ services:
     command: npm start
     volumes:
       - ./src/backend:/backend
+      - /backend/node_modules
     depends_on:
       - db
     ports:
@@ -24,10 +25,11 @@ services:
   frontend:
     build: src/frontend
     command: npm run serve
+    volumes:
+      - ./src/frontend:/frontend
+      - /frontend/node_modules
     environment:
       PORT: '8080'
       HOST: '0.0.0.0'
     ports:
       - '8080:8080'
-    volumes:
-      - ./src/frontend:/frontend
